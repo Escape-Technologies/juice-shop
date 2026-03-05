@@ -753,3 +753,8 @@ export function close (exitCode: number | undefined) {
 // stop server on sigint or sigterm signals
 process.on('SIGINT', () => { close(0) })
 process.on('SIGTERM', () => { close(0) })
+
+// prevent unhandled promise rejections from exiting the process (log instead)
+process.on('unhandledRejection', (reason: unknown, _promise: Promise<unknown>) => {
+  logger.error('Unhandled promise rejection: ' + (reason instanceof Error ? reason.message : String(reason)))
+})

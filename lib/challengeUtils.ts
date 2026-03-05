@@ -27,7 +27,8 @@ export const solveIf = function (challenge: any, criteria: () => any, isRestore:
 
 export const solve = function (challenge: any, isRestore = false) {
   challenge.solved = true
-  challenge.save().then(async (solvedChallenge: { difficulty: number, key: string, name: string, id: number }) => {
+  challenge.save()
+    .then(async (solvedChallenge: { difficulty: number, key: string, name: string, id: number }) => {
     logger.info(`${isRestore ? colors.grey('Restored') : colors.green('Solved')} ${solvedChallenge.difficulty}-star ${colors.cyan(solvedChallenge.key)} (${solvedChallenge.name})`)
     sendNotification(solvedChallenge, isRestore)
     if (!isRestore) {
@@ -40,6 +41,9 @@ export const solve = function (challenge: any, isRestore = false) {
         })
       }
     }
+  })
+  .catch((error: unknown) => {
+    logger.error('Challenge save failed: ' + colors.red(utils.getErrorMessage(error)))
   })
 }
 

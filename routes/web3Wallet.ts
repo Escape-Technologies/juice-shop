@@ -15,17 +15,20 @@ export function contractExploitListener () {
     const metamaskAddress = req.body.walletAddress
     walletsConnected.add(metamaskAddress)
     try {
-      const provider = new WebSocketProvider('wss://eth-sepolia.g.alchemy.com/v2/FZDapFZSs1l6yhHW4VnQqsi18qSd-3GJ')
-      const contract = new Contract(web3WalletAddress, web3WalletABI, provider)
-      if (!isEventListenerCreated) {
-        void contract.on('ContractExploited', (exploiter: string) => {
-          if (walletsConnected.has(exploiter)) {
-            walletsConnected.delete(exploiter)
-            challengeUtils.solveIf(challenges.web3WalletChallenge, () => true)
-          }
-        })
-        isEventListenerCreated = true
-      }
+      // const provider = new WebSocketProvider('wss://eth-sepolia.g.alchemy.com/v2/FZDapFZSs1l6yhHW4VnQqsi18qSd-3GJ')
+      // const contract = new Contract(web3WalletAddress, web3WalletABI, provider)
+      // contract.on('error', (err: unknown) => {
+      //   logger.warn('Web3 wallet WebSocket provider error: ' + utils.getErrorMessage(err))
+      // })
+      // if (!isEventListenerCreated) {
+      //   void contract.on('ContractExploited', (exploiter: string) => {
+      //     if (walletsConnected.has(exploiter)) {
+      //       walletsConnected.delete(exploiter)
+      //       challengeUtils.solveIf(challenges.web3WalletChallenge, () => true)
+      //     }
+      //   })
+      //   isEventListenerCreated = true
+      // }
       res.status(200).json({ success: true, message: 'Event Listener Created' })
     } catch (error) {
       res.status(500).json(utils.getErrorMessage(error))
