@@ -1,4 +1,32 @@
 -
+  email: issue_benchmark@escape.tech
+  password: 'issue_benchmark'
+  key: issue_benchmark
+  role: 'admin'
+  securityQuestion:
+    id: 2
+    answer: '@xI98PxDO+06!'
+  feedback:
+    comment: 'I love this shop! Best products in town! Highly recommended!'
+    rating: 5
+  address:
+    - fullName: 'Escape'
+      mobileNum: 1234567890
+      zipCode: '4711'
+      streetAddress: '0815 Test Street'
+      city: 'Test'
+      state: 'Test'
+      country: 'Test'
+  card:
+    - fullName: 'Escape'
+      cardNum: 4716190207394368
+      expMonth: 2
+      expYear: 2081
+    - fullName: 'Tech'
+      cardNum: 4024007105648108
+      expMonth: 4
+      expYear: 2086
+-
   email: admin
   password: 'admin123'
   key: admin
@@ -272,6 +300,12 @@
   password: 'IamUsedForTesting'
   key: LetUsTest
   role: 'admin'
+-
+  email: starter
+  password: 'starter123'
+  key: starter
+  role: 'customer'
+  walletBalance: 0
 -
   email: basil
   password: 'my little nest of vipers'
